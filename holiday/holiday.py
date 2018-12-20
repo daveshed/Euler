@@ -1,5 +1,7 @@
 import random
 
+TOLERANCE = 0.00001
+
 
 class Day:
     def __init__(self, date):
@@ -84,11 +86,17 @@ class God:
         Emperor(planet.calendar)
 
 
-N_RUNS = 100
-
 def how_many_emperors(days):
     results = []
-    for i in range(N_RUNS):
+    new_result = 1
+    old_result = new_result + TOLERANCE * 2
+    n_runs = 0
+    while abs(new_result - old_result) > TOLERANCE:
+        n_runs += 1
+        old_result = new_result
         world = God.create_world(days)
-        results.append(world.run())
-    return sum(results) / N_RUNS
+        n_emperors = world.run()
+        results.append(n_emperors)
+        new_result = sum(results) / n_runs
+        print("year of {} days needs {} emperors. result is {}".format(days, n_emperors, new_result))
+    return sum(results) / n_runs
