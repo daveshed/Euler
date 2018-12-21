@@ -76,17 +76,6 @@ class World:
         return counter
 
 
-class God:
-
-    @staticmethod
-    def create_world(n_days):
-        return World(n_days)
-
-    @staticmethod
-    def spawn_emperor(planet):
-        Emperor(planet.calendar)
-
-
 def expected_emperors(days):
     results = []
     new_result = 1
@@ -95,7 +84,7 @@ def expected_emperors(days):
     while abs(new_result - old_result) > TOLERANCE:
         n_runs += 1
         old_result = new_result
-        world = God.create_world(days)
+        world = World(days)
         n_emperors = world.run()
         results.append(n_emperors)
         new_result = sum(results) / n_runs
