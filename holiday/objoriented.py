@@ -1,4 +1,5 @@
 import random
+import sys
 
 TOLERANCE = 0.00001
 
@@ -86,7 +87,7 @@ class God:
         Emperor(planet.calendar)
 
 
-def how_many_emperors(days):
+def expected_emperors(days):
     results = []
     new_result = 1
     old_result = new_result + TOLERANCE * 2
