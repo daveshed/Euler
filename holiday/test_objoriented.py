@@ -9,10 +9,10 @@ class EveryDayIsAHoliday(unittest.TestCase):
         self.assertEqual(1, expected_emperors(days=2))
 
     def test_5_day(self):
-        self.assertEqual(31/6, expected_emperors(5))
+        self.assertAlmostEqual(31/6, expected_emperors(5), places=4)
 
     def test_365_day_year(self):
-        self.assertEqual(1174.3501, expected_emperors(365))
+        self.assertAlmostEqual(1174.3501, expected_emperors(365), places=4)
 
     def test_time_to_compute_no_emperors(self):
         days = 365
